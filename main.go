@@ -7,7 +7,7 @@ import (
 )
 
 func main() {
-	// 初始化gin
+	// Creates a router without any middleware by default
 	g := gin.New()
 
 	middlewares := []gin.HandlerFunc{}
