@@ -6,6 +6,7 @@ import (
 	"time"
 
 	"cat-slave/config"
+	"cat-slave/model"
 	"cat-slave/router"
 
 	"github.com/gin-gonic/gin"
@@ -42,6 +43,9 @@ func main() {
 		// Middlwares.
 		middlewares...,
 	)
+
+	model.DB.Init()
+	defer model.DB.Close()
 
 	// Ping the server to make sure the router is working.
 	go func() {
