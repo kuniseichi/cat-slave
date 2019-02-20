@@ -2,6 +2,7 @@ package router
 
 import (
 	"cat-slave/handler/sd"
+	"cat-slave/handler/user"
 	"cat-slave/router/middleware"
 	"net/http"
 
@@ -44,5 +45,11 @@ func Load(g *gin.Engine, mw ...gin.HandlerFunc) *gin.Engine {
 		svcd.GET("/cpu", sd.CPUCheck)
 		svcd.GET("/ram", sd.RAMCheck)
 	}
+
+	u := g.Group("/user")
+	{
+		u.GET("/list", user.GetUserList)
+	}
+
 	return g
 }

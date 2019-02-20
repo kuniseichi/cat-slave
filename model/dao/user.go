@@ -1,19 +1,16 @@
-package dao
+package userDao
 
 import (
 	"cat-slave/model"
 	"fmt"
 	"time"
-
-	"github.com/jinzhu/gorm"
 )
 
 type User struct {
-	gorm.Model
 	ID       uint64     `gorm:"primary_key;AUTO_INCREMENT;column:id"`
 	OpenID   string     `gorm:"type:varchar(100);unique_index"`
 	CreateAt time.Time  `gorm:"column:create_at"`
-	UpdateAt time.Time  `gorm:"column:create_at"`
+	UpdateAt time.Time  `gorm:"column:update_at"`
 	DeleteAt *time.Time `gorm:"column:delete_at"`
 }
 
@@ -58,6 +55,10 @@ func Create() {
 
 }
 
-func Get() {
-
+func GetUserList() []*User {
+	users := make([]*User, 0)
+	model.DB.Mysql.Raw("select * from user").Scan(&users)
+	// model.DB.mysql
+	fmt.Print(users)
+	return users
 }
