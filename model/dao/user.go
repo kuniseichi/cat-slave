@@ -7,11 +7,11 @@ import (
 )
 
 type User struct {
-	ID       uint64     `gorm:"primary_key;AUTO_INCREMENT;column:id"`
-	OpenID   string     `gorm:"type:varchar(100);unique_index"`
-	CreateAt time.Time  `gorm:"column:create_at"`
-	UpdateAt time.Time  `gorm:"column:update_at"`
-	DeleteAt *time.Time `gorm:"column:delete_at"`
+	ID       uint64     `json:"id" gorm:"primary_key;AUTO_INCREMENT;column:id"`
+	OpenID   string     `json:"openId" gorm:"type:varchar(100);unique_index" `
+	CreateAt time.Time  `json:"createAt" gorm:"column:create_at"`
+	UpdateAt time.Time  `json:"updateAt" gorm:"column:update_at"`
+	DeleteAt *time.Time `json:"deleteAt" gorm:"column:delete_at"`
 }
 
 func (User) TableName() string {
@@ -58,7 +58,5 @@ func Create() {
 func GetUserList() []*User {
 	users := make([]*User, 0)
 	model.DB.Mysql.Raw("select * from user").Scan(&users)
-	// model.DB.mysql
-	fmt.Print(users)
 	return users
 }

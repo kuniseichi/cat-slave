@@ -34,8 +34,8 @@ func Load(g *gin.Engine, mw ...gin.HandlerFunc) *gin.Engine {
 	g.Use(middleware.Secure)
 	g.Use(mw...)
 
-	g.NoRoute(func(c *gin.Context) {
-		c.String(http.StatusNotFound, "The incorrect API route.")
+	g.NoRoute(func(g *gin.Context) {
+		g.String(http.StatusNotFound, "The incorrect API route.")
 	})
 
 	svcd := g.Group("/sd")
