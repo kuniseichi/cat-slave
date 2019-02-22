@@ -1,5 +1,7 @@
 package err
 
+import "fmt"
+
 type Errno struct {
 	Code    int
 	Message string
@@ -9,6 +11,6 @@ type Errno struct {
 
 // }
 
-// func (err *Errno) Error() string {
-// 	return fmt.Sprintf("Err - code: %d, message: %s, error: %s", err.Code, err.Message, err.Err)
-// }
+func (err *Errno) Error() string {
+	return fmt.Sprintf("Err - code: %d, message: %s", err.Code, err.Message)
+}

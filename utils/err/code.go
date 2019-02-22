@@ -4,7 +4,7 @@ var (
 	// Common errors
 	OK   = &Errno{Code: 0, Message: "OK"}
 	Fail = &Errno{Code: 10000, Message: "undefined error"}
-	// jwt errors
+	// 100001 -100100 jwt errors
 
 	//
 	InternalServerError = &Errno{Code: 10001, Message: "Internal server error"}

@@ -1,6 +1,7 @@
 package router
 
 import (
+	"cat-slave/handler/login"
 	"cat-slave/handler/sd"
 	"cat-slave/handler/user"
 	"cat-slave/router/middleware"
@@ -46,7 +47,13 @@ func Load(g *gin.Engine, mw ...gin.HandlerFunc) *gin.Engine {
 		svcd.GET("/ram", sd.RAMCheck)
 	}
 
+	l := g.Group("login")
+	{
+		l.GET("", login.Login)
+	}
+
 	u := g.Group("/user")
+	u.Use(middleware.AuthMiddleware())
 	{
 		u.GET("/list", user.GetUserList)
 	}

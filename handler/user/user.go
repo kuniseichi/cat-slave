@@ -14,6 +14,7 @@ func GetUserList(g *gin.Context) {
 	fmt.Print(u[0].CreateAt)
 	result.Success(g, map[string]interface{}{
 		"userList": u,
+		"token":    "",
 	})
 }
 
