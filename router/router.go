@@ -53,7 +53,7 @@ func Load(g *gin.Engine, mw ...gin.HandlerFunc) *gin.Engine {
 	}
 
 	u := g.Group("/user")
-	u.Use(middleware.AuthMiddleware())
+	// u.Use(middleware.AuthMiddleware())
 	{
 		u.GET("/list", user.GetUserList)
 	}

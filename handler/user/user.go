@@ -1,17 +1,15 @@
 package user
 
 import (
-	userDao "cat-slave/model/dao"
+	userDao "cat-slave/model/user"
 	"cat-slave/utils/err"
 	result "cat-slave/utils/http"
-	"fmt"
 
 	"github.com/gin-gonic/gin"
 )
 
 func GetUserList(g *gin.Context) {
 	u := userDao.GetUserList()
-	fmt.Print(u[0].CreateAt)
 	result.Success(g, map[string]interface{}{
 		"userList": u,
 		"token":    "",
