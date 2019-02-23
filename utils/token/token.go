@@ -17,8 +17,8 @@ var (
 	ErrMissingHeader   = &err.Errno{Code: 10001, Message: "The length of the `Authorization` header is zero."}
 	ErrTokenExpired    = &err.Errno{Code: 10002, Message: "The token has expired."}
 	ErrValidateFailed  = &err.Errno{Code: 10003, Message: "The token validate failed."}
-	ErrTokenValide     = &err.Errno{Code: 10004, Message: "The token sign failed."}
-	ErrTokenSignFailed = &err.Errno{Code: 10004, Message: "The token sign failed."}
+	ErrMissingClaims   = &err.Errno{Code: 10004, Message: "claims missing."}
+	ErrTokenSignFailed = &err.Errno{Code: 10005, Message: "The token sign failed."}
 )
 
 // sign token
