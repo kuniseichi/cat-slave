@@ -20,12 +20,12 @@ var DB *DataBase
 func (db *DataBase) Init() {
 	DB = &DataBase{
 		Mysql: GetMysql(),
-		Redis: GetRedis(),
+		// Redis: GetRedis(),
 	}
 }
 func (db *DataBase) Close() {
 	DB.Mysql.Close()
-	DB.Redis.Close()
+	// DB.Redis.Close()
 }
 
 func GetMysql() *gorm.DB {

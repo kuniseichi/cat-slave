@@ -37,7 +37,7 @@ func Success(g *gin.Context, data map[string]interface{}) {
 
 func UError(g *gin.Context, msg string) {
 	var message string
-	if msg == "" {
+	if msg != "" {
 		message = msg
 	} else {
 		message = err.Fail.Message

@@ -1,6 +1,9 @@
 package passageDao
 
-import "time"
+import (
+	"cat-slave/model"
+	"time"
+)
 
 type Passage struct {
 	ID       uint64     `json:"id" gorm:"primary_key;AUTO_INCREMENT;column:id"`
@@ -14,4 +17,16 @@ type Passage struct {
 
 func (p *Passage) TableName() string {
 	return "passage"
+}
+
+func Get(id int) (*Passage, error) {
+	p := &Passage{}
+	db := model.DB.Mysql.Where("id = ?", id).First(&p)
+	return p, db.Error
+}
+
+func List() ([]*Passage, error) {
+	passages := make([]*Passage, 0)
+	db := model.DB.Mysql.Raw("select * from passage").Scan(&passages)
+	return passages, db.Error
 }

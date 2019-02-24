@@ -2,6 +2,7 @@ package router
 
 import (
 	"cat-slave/handler/login"
+	"cat-slave/handler/passage"
 	"cat-slave/handler/sd"
 	"cat-slave/handler/user"
 	"cat-slave/router/middleware"
@@ -55,7 +56,13 @@ func Load(g *gin.Engine, mw ...gin.HandlerFunc) *gin.Engine {
 	u := g.Group("/user")
 	// u.Use(middleware.AuthMiddleware())
 	{
-		u.GET("/list", user.GetUserList)
+		u.GET("", user.GetUserList)
+	}
+
+	p := g.Group("/passage")
+	{
+		p.GET("/:id", passage.Get)
+		p.GET("", passage.List)
 	}
 
 	return g
