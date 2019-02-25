@@ -39,4 +39,4 @@ func List(g *gin.Context) {
 
 }
 
-// 全文索引 
+// 全文索引
