@@ -26,6 +26,8 @@ func Get(g *gin.Context) {
 	})
 }
 
+
+
 // 文章列表
 func List(g *gin.Context) {
 	passages, err := passageDao.List()
@@ -35,6 +37,15 @@ func List(g *gin.Context) {
 	}
 	result.Success(g, map[string]interface{}{
 		"passages": passages,
+	})
+
+}
+
+// 文章列表
+func ListTest(g *gin.Context) {
+
+	result.Success(g, map[string]interface{}{
+		"passages": "1231241515",
 	})
 
 }

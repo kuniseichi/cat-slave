@@ -61,8 +61,9 @@ func Load(g *gin.Engine, mw ...gin.HandlerFunc) *gin.Engine {
 
 	p := g.Group("/passage")
 	{
-		p.GET("/:id", passage.Get)
+		//p.GET("/:id", passage.Get)
 		p.GET("", passage.List)
+		p.GET("/aa", passage.ListTest)
 	}
 
 	return g
