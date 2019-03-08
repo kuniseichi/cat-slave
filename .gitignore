@@ -1,4 +1,6 @@
 /log
-/.vscode
+.vscode
 /conf
 deploy.sh
+cat-slave
+.idea
