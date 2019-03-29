@@ -26,8 +26,6 @@ func Get(g *gin.Context) {
 	})
 }
 
-
-
 // 文章列表
 func List(g *gin.Context) {
 	passages, err := passageDao.List()

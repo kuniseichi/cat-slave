@@ -14,6 +14,7 @@ func GetUserList(g *gin.Context) {
 		"userList": u,
 		"token":    "",
 	})
+
 }
 
 func GetUserList2(g *gin.Context) {

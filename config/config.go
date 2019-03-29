@@ -16,18 +16,23 @@ func Init(cfg string) error {
 	c := Config{
 		Name: cfg,
 	}
+	// 基本配置
 	if err := c.initConfig(); err != nil {
 		return err
 	}
+	// 日志配置
 	c.initLog()
+	// 热加载
 	c.watchConfig()
 	return nil
 }
 
 func (c *Config) initConfig() error {
+	// 如未指定文件名则加载/conf/config文件
 	if c.Name != "" {
 		viper.SetConfigFile(c.Name)
 	} else {
+		// viper.SetConfigFile("conf/config.yaml")
 		viper.AddConfigPath("conf")
 		viper.SetConfigName("config")
 	}

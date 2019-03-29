@@ -16,12 +16,15 @@ import (
 )
 
 var (
-	// 设置初始化参数
-	//   -c config.yaml cfg=第三个参数的值
-	cfg = pflag.StringP("config", "c", "", "cat-wx-public config file path.")
+	// 设置初始化参数 可以通过-h 查看
+	// -c config.yaml
+	// 方法返回第三个参数, 如果没有传入, 则为""
+	cfg = pflag.StringP("config", "c", "", "config file path.")
 )
 
 func main() {
+	// 必须
+	pflag.Parse()
 	// init config
 	if err := config.Init(*cfg); err != nil {
 		panic(err)
@@ -34,12 +37,10 @@ func main() {
 	g := gin.New()
 
 	middlewares := []gin.HandlerFunc{}
-
 	// Routes.
 	router.Load(
 		// Cores.
 		g,
-
 		// Middlwares.
 		middlewares...,
 	)
