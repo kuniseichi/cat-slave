@@ -1,10 +1,9 @@
 package login
 
 import (
-	result "cat-slave/utils/http"
+	"cat-slave/utils/http/result"
 	"cat-slave/utils/token"
-
-	jwt "github.com/dgrijalva/jwt-go"
+	"github.com/dgrijalva/jwt-go"
 
 	"github.com/gin-gonic/gin"
 )

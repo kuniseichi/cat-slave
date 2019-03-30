@@ -1,8 +1,9 @@
 package passage
 
 import (
+	// passageDao "cat-slave/model/passage"
 	passageDao "cat-slave/model/passage"
-	result "cat-slave/utils/http"
+	"cat-slave/utils/http/result"
 	"strconv"
 
 	"github.com/gin-gonic/gin"
@@ -27,25 +28,22 @@ func Get(g *gin.Context) {
 }
 
 // 文章列表
-func List(g *gin.Context) {
+func BrefList(g *gin.Context) {
 	passages, err := passageDao.List()
 	if err != nil {
-		result.UError(g, "查询失败")
+		result.UError(g, "查询异常")
 		return
 	}
 	result.Success(g, map[string]interface{}{
 		"passages": passages,
 	})
-
 }
 
 // 文章列表
 func ListTest(g *gin.Context) {
-
 	result.Success(g, map[string]interface{}{
 		"passages": "1231241515",
 	})
-
 }
 
 // 全文索引
