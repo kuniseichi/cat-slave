@@ -35,6 +35,6 @@ func Get(id int) (*Passage, error) {
 
 func List() ([]*Passage, error) {
 	passages := make([]*Passage, 0)
-	db := model.DB.Mysql.Raw("select * from passage left join ").Scan(&passages)
+	db := model.DB.Mysql.Raw("select * from passage").Scan(&passages)
 	return passages, db.Error
 }

@@ -1,6 +1,7 @@
 package main
 
 import (
+	"cat-slave/router/middleware"
 	"errors"
 	"net/http"
 	"time"
@@ -36,13 +37,13 @@ func main() {
 	// Create the Gin engine without default config
 	g := gin.New()
 
-	middlewares := []gin.HandlerFunc{}
 	// Routes.
 	router.Load(
 		// Cores.
 		g,
 		// Middlwares.
-		middlewares...,
+		middleware.RequestId(),
+		middleware.Logging(),
 	)
 
 	model.DB.Init()
