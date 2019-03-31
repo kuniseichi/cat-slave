@@ -4,7 +4,7 @@ import (
 	"fmt"
 	"time"
 
-	"cat-slave/utils/err"
+	"cat-slave/pkg/err"
 
 	"github.com/gin-gonic/gin"
 	"github.com/spf13/viper"

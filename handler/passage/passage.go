@@ -3,7 +3,7 @@ package passage
 import (
 	// passageDao "cat-slave/model/passage"
 	passageDao "cat-slave/model/passage"
-	"cat-slave/utils/http/result"
+	"cat-slave/pkg/http/result"
 	"strconv"
 
 	"github.com/gin-gonic/gin"

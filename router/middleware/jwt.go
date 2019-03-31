@@ -1,8 +1,8 @@
 package middleware
 
 import (
-	"cat-slave/utils/http/result"
-	"cat-slave/utils/token"
+	"cat-slave/pkg/http/result"
+	"cat-slave/pkg/token"
 
 	"github.com/gin-gonic/gin"
 )

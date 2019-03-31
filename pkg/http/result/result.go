@@ -3,7 +3,7 @@ package result
 import (
 	"net/http"
 
-	"cat-slave/utils/err"
+	"cat-slave/pkg/err"
 
 	"github.com/gin-gonic/gin"
 )

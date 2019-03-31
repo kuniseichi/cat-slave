@@ -2,7 +2,7 @@ package user
 
 import (
 	"cat-slave/model/user"
-	"cat-slave/utils/http/result"
+	"cat-slave/pkg/http/result"
 	"github.com/gin-gonic/gin"
 )
 
