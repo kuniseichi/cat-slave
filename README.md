@@ -7,3 +7,8 @@ gofmt -w .
 go tool vet .
 <!-- 编译 -v打印包名 -->
 go build -v .
+
+目录数据存在redis中
+
+
+全文索引存在es中
