@@ -38,3 +38,7 @@ func List() ([]*Passage, error) {
 	db := model.DB.Mysql.Raw("select * from passage").Scan(&passages)
 	return passages, db.Error
 }
+
+func TotalIndex()  {
+	
+}

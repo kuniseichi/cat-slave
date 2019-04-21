@@ -2,6 +2,8 @@ package model
 
 import (
 	"fmt"
+	"github.com/go-ego/riot"
+	"github.com/olivere/elastic"
 
 	"github.com/go-redis/redis"
 	"github.com/jinzhu/gorm"
@@ -13,19 +15,31 @@ import (
 type DataBase struct {
 	Mysql *gorm.DB
 	Redis *redis.Client
+	Roit  *riot.Engine
 }
 
 var DB *DataBase
 
 func (db *DataBase) Init() {
 	DB = &DataBase{
-		Mysql: GetMysql(),
+		Roit: GetRoit(),
+		//Mysql: GetMysql(),
 		// Redis: GetRedis(),
 	}
 }
 func (db *DataBase) Close() {
-	DB.Mysql.Close()
+
+	//DB.Mysql.Close()
 	// DB.Redis.Close()
+}
+
+func GetRoit() *riot.Engine {
+
+	return nil
+}
+
+func openElastic() *elastic.Client {
+	return nil
 }
 
 func GetMysql() *gorm.DB {
