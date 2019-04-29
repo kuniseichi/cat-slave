@@ -2,12 +2,11 @@ package middleware
 
 import (
 	"bytes"
-	"cat-wx-public/handler"
-	"cat-wx-public/pkg/errno"
+	"cat-slave/handler"
+	"cat-slave/pkg/errno"
 	"encoding/json"
 	"io/ioutil"
 	"time"
-
 
 	"github.com/gin-gonic/gin"
 	"github.com/lexkong/log"

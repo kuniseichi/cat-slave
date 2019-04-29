@@ -24,6 +24,16 @@ var (
 )
 
 func main() {
+	//files, err := file.GetAllFiles("./html")
+	//if err != nil {
+	//	panic(err)
+	//}
+	//for file := range files {
+	//	fmt.Println(file)
+	//}
+
+
+
 	// 必须
 	pflag.Parse()
 	// init config

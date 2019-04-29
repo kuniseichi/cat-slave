@@ -1,9 +1,12 @@
 package passage
 
 import (
+	"cat-slave/model"
+	"encoding/json"
 	// passageDao "cat-slave/model/passage"
 	passageDao "cat-slave/model/passage"
 	"cat-slave/pkg/http/result"
+	"github.com/lexkong/log"
 	"strconv"
 
 	"github.com/gin-gonic/gin"
@@ -46,4 +49,25 @@ func ListTest(g *gin.Context) {
 	})
 }
 
-// 全文索引
+func Index(g *gin.Context)  {
+	keyword := g.Param("keyword")
+	var value interface{}
+	if model.DB.Redis.Exists("index_" + keyword).Val() != 0 {
+		v := model.DB.Redis.Get("index_" + keyword).Val()
+		json.Unmarshal([]byte(v),&value)
+	} else {
+		value2, err := passageDao.Index(keyword)
+		if err != nil {
+			log.Info("获取索引失败")
+		}
+		str, _ := json.Marshal(value2)
+		model.DB.Redis.Set("index_" + keyword, string(str), 1000*1000*1000*3600*24)
+		value = value2
+	}
+
+	result.Success(g, map[string]interface{}{
+		"passages": value,
+	})
+}
+
+

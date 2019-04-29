@@ -3,8 +3,6 @@ package model
 import (
 	"fmt"
 	"github.com/go-ego/riot"
-	"github.com/olivere/elastic"
-
 	"github.com/go-redis/redis"
 	"github.com/jinzhu/gorm"
 	_ "github.com/jinzhu/gorm/dialects/mysql"
@@ -22,25 +20,58 @@ var DB *DataBase
 
 func (db *DataBase) Init() {
 	DB = &DataBase{
-		Roit: GetRoit(),
-		//Mysql: GetMysql(),
-		// Redis: GetRedis(),
+		//Roit: GetRoit(),
+		Mysql: GetMysql(),
+		Redis: GetRedis(),
 	}
 }
 func (db *DataBase) Close() {
 
-	//DB.Mysql.Close()
-	// DB.Redis.Close()
+	DB.Mysql.Close()
+	DB.Redis.Close()
+	//DB.Roit.Close()
+
 }
 
-func GetRoit() *riot.Engine {
+//func GetRoit() *riot.Engine {
+//	// 初始化
+//	searcher := riot.Engine{}
+//	searcher.Init(types.EngineOpts{
+//		Using:             3,
+//		GseDict: "zh",
+//		IndexerOpts: &types.IndexerOpts{
+//			IndexType: types.LocsIndex,
+//		},
+//		//NotUseGse: true,
+//		// GseDict: "your gopath"+"/src/github.com/go-ego/riot/data/dict/dictionary.txt",
+//	})
+//
+//	/**
+//		1. 循环读取文章,
+//		2. 存入
+//		3. 获取时进行裁剪
+//	 */
+//	file.ShowFileList(viper.GetString("passage.path"))
+//
+//	//text := "《复仇者联盟3：复仇无限战争》"
+//	//text1 := "在IMAX影院放映时"
+//	//text2 := "全片以上下扩展至IMAX 1.9：1的战争宽高比来呈现"
+//
+//	for index, value := range file.FileList {
+//		searcher.Index(strconv.Itoa(index), types.DocData{Content: value.Content})
+//	}
+//
+//	// 将文档加入索引，docId 从1开始
+//	//searcher.Index("1", types.DocData{Content: text})
+//	//searcher.Index("2", types.DocData{Content: text1}, false)
+//	//searcher.Index("3", types.DocData{Content: text2}, true)
+//
+//	// 等待索引刷新完毕
+//	searcher.Flush()
+//	// engine.FlushIndex()
+//	return &searcher
+//}
 
-	return nil
-}
-
-func openElastic() *elastic.Client {
-	return nil
-}
 
 func GetMysql() *gorm.DB {
 	return openMysql(viper.GetString("mysql.username"),

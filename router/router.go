@@ -26,7 +26,7 @@ func Load(g *gin.Engine, mw ...gin.HandlerFunc) *gin.Engine {
 	// 		param.ErrorMessage,
 	// 	)
 	// }))
-
+	const version = "/api_v1"
 	// Recovery middleware recovers from any panics and writes a 500 if there was one.
 	g.Use(gin.Recovery())
 	g.Use(middleware.NoCache)
@@ -57,9 +57,9 @@ func Load(g *gin.Engine, mw ...gin.HandlerFunc) *gin.Engine {
 	//	u.GET("", user.GetUserList)
 	//}
 
-	p := g.Group("/passage")
+	p := g.Group(version + "/index")
 	{
-		p.GET("", passage.BrefList)
+		p.GET("/:keyword", passage.Index)
 	}
 
 	return g

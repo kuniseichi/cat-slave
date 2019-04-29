@@ -4,7 +4,7 @@ import (
 	"fmt"
 	"time"
 
-	"cat-slave/pkg/err"
+	"cat-slave/pkg/errno"
 
 	"github.com/gin-gonic/gin"
 	"github.com/spf13/viper"
@@ -14,15 +14,15 @@ import (
 
 var (
 	// ErrMissingHeader means the `Authorization` header was empty.
-	ErrMissingHeader   = &err.Errno{Code: 10001, Message: "The length of the `Authorization` header is zero."}
-	ErrTokenExpired    = &err.Errno{Code: 10002, Message: "The token has expired."}
-	ErrValidateFailed  = &err.Errno{Code: 10003, Message: "The token validate failed."}
-	ErrMissingClaims   = &err.Errno{Code: 10004, Message: "claims missing."}
-	ErrTokenSignFailed = &err.Errno{Code: 10005, Message: "The token sign failed."}
+	ErrMissingHeader   = &errno.Errno{Code: 10001, Message: "The length of the `Authorization` header is zero."}
+	ErrTokenExpired    = &errno.Errno{Code: 10002, Message: "The token has expired."}
+	ErrValidateFailed  = &errno.Errno{Code: 10003, Message: "The token validate failed."}
+	ErrMissingClaims   = &errno.Errno{Code: 10004, Message: "claims missing."}
+	ErrTokenSignFailed = &errno.Errno{Code: 10005, Message: "The token sign failed."}
 )
 
 // sign token
-func Sign(claims jwt.MapClaims) (string, *err.Errno) {
+func Sign(claims jwt.MapClaims) (string, *errno.Errno) {
 	claims["createTime"] = time.Now().Unix()
 	token := jwt.NewWithClaims(jwt.SigningMethodHS256, claims)
 	// secret :=
@@ -33,7 +33,7 @@ func Sign(claims jwt.MapClaims) (string, *err.Errno) {
 	return tokenString, nil
 }
 
-func ParseRequest(c *gin.Context) (map[string]interface{}, *err.Errno) {
+func ParseRequest(c *gin.Context) (map[string]interface{}, *errno.Errno) {
 	header := c.Request.Header.Get("Authorization")
 
 	if len(header) == 0 {
@@ -46,7 +46,7 @@ func ParseRequest(c *gin.Context) (map[string]interface{}, *err.Errno) {
 	return Parse(t)
 }
 
-func Parse(tokenString string) (map[string]interface{}, *err.Errno) {
+func Parse(tokenString string) (map[string]interface{}, *errno.Errno) {
 
 	// Parse takes the token string and a function for looking up the key. The latter is especially
 	// useful if you use multiple keys for your application.  The standard is to use 'kid' in the
