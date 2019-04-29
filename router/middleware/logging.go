@@ -5,6 +5,7 @@ import (
 	"cat-slave/handler"
 	"cat-slave/pkg/errno"
 	"encoding/json"
+	"fmt"
 	"io/ioutil"
 	"time"
 
@@ -28,7 +29,7 @@ func Logging() gin.HandlerFunc {
 	return func(c *gin.Context) {
 		start := time.Now().UTC()
 		path := c.Request.URL.Path
-
+		fmt.Println("------------" + path)
 		//reg := regexp.MustCompile("(/v1/user|/login)")
 		//if !reg.MatchString(path) {
 		//	return
