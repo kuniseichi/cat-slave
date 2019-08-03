@@ -2,6 +2,7 @@ package router
 
 import (
 	"cat-slave/handler/passage"
+	"cat-slave/handler/remind"
 	"cat-slave/handler/sd"
 	"cat-slave/router/middleware"
 	"net/http"
@@ -34,6 +35,7 @@ func Load(g *gin.Engine, mw ...gin.HandlerFunc) *gin.Engine {
 	g.Use(middleware.Secure)
 	g.Use(mw...)
 
+
 	g.NoRoute(func(g *gin.Context) {
 		g.String(http.StatusNotFound, "The incorrect API route.")
 	})
@@ -51,16 +53,25 @@ func Load(g *gin.Engine, mw ...gin.HandlerFunc) *gin.Engine {
 	//	l.GET("", login.Login)
 	//}
 
-	//u := g.Group("/user")
-	//// u.Use(middleware.AuthMiddleware())
-	//{
-	//	u.GET("", user.GetUserList)
-	//}
+	u := g.Group("/user")
+	// u.Use(middleware.AuthMiddleware())
+	{
+		u.GET("/wxRecall", remind.Page)
+	}
 
 	p := g.Group("/index")
 	{
 		p.GET("/:keyword", passage.Index)
 	}
+
+	r := g.Group("/remind")
+	//r.Use(middleware.AuthMiddleware())
+	{
+		r.GET("")// 获取当前用户当天的事项
+		r.POST("") // 新增事项
+
+	}
+
 
 	return g
 }

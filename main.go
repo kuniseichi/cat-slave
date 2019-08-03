@@ -32,8 +32,6 @@ func main() {
 	//	fmt.Println(file)
 	//}
 
-
-
 	// 必须
 	pflag.Parse()
 	// init config
