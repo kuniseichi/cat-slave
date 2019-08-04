@@ -42,6 +42,17 @@ func BrefList(g *gin.Context) {
 	})
 }
 
+// tranction test1
+func tranone(g *gin.Context) {
+	// 参数校验
+
+	// 数据库数据校验 (避免重复等)
+
+	// 开始事务修改
+
+	// 返回结果
+}
+
 // 文章列表
 func ListTest(g *gin.Context) {
 	result.Success(g, map[string]interface{}{

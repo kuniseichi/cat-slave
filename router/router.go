@@ -61,7 +61,8 @@ func Load(g *gin.Engine, mw ...gin.HandlerFunc) *gin.Engine {
 
 	p := g.Group("/index")
 	{
-		p.GET("/:keyword", passage.Index)
+		p.GET("/a", passage.BrefList)
+		//p.GET("/:keyword", passage.Index)
 	}
 
 	r := g.Group("/remind")
