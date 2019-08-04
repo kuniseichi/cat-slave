@@ -18,12 +18,11 @@ func Transact(txFunc func() error) (err error) {
 		}
 	}()
 
-	err = txFunc()
-	return err
+	return txFunc()
 }
 
 
-func DoSomething() error {
+func PassageService() (interface{}, error) {
 	return Transact(func () error {
 		if _, err := passage.List(); err != nil {
 			return err
