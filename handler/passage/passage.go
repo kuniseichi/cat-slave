@@ -56,7 +56,7 @@ func tranone(g *gin.Context) {
 
 // 文章列表
 func ListTest(g *gin.Context) {
-	passage.PassageService()
+	passage.PassageService(1)
 	result.Success(g, map[string]interface{}{
 		"passages": "1231241515",
 	})
