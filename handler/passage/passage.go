@@ -2,6 +2,7 @@ package passage
 
 import (
 	"cat-slave/model"
+	"cat-slave/service/passage"
 	"encoding/json"
 	// passageDao "cat-slave/model/passage"
 	passageDao "cat-slave/model/passage"
@@ -55,6 +56,7 @@ func tranone(g *gin.Context) {
 
 // 文章列表
 func ListTest(g *gin.Context) {
+	passage.PassageService()
 	result.Success(g, map[string]interface{}{
 		"passages": "1231241515",
 	})
